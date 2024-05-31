@@ -11,7 +11,7 @@ def format_history(msg: str, history: list[list[str, str]], system_prompt: str):
 
 def generate_response(msg: str, history: list[list[str, str]], system_prompt: str):
     chat_history = format_history(msg, history, system_prompt)
-    response = ollama.chat(model='llama2', stream=True, messages=chat_history)
+    response = ollama.chat(model='llama3:latest', stream=True, messages=chat_history)
     message = ""
     for partial_resp in response:
         token = partial_resp["message"]["content"]
@@ -30,7 +30,7 @@ chatbot = gr.ChatInterface(
                         label="System Prompt"
                     )
                 ],
-                title="LLama-2 (7B) Chatbot using 'Ollama'",
+                title="LLama-3 (8B) Chatbot using 'Ollama'",
                 description="Feel free to ask any question.",
                 theme="soft",
                 submit_btn="⬅ Send",
